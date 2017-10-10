@@ -71,7 +71,8 @@ def main():
 		previous_block = block_to_add
 
 	# Mostrar el resultado
-	print(Block.verbose(blockchain[5]))
+	for i in blockchain:
+		print(Block.verbose(i))
 
 if __name__ == '__main__':
 	main()
