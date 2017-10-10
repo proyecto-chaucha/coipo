@@ -45,7 +45,7 @@ def genesisBlock():
 # Generación de bloques
 def blockCreate(lastBlock):
 	index = lastBlock.index + 1
-	timestamp = int(time())
+	timestamp = time()
 	data = 'Hey! Im block ' + str(index)
 	hash = lastBlock.hash
 	return Block(index, timestamp, data, hash)
