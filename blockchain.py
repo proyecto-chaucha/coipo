@@ -31,12 +31,12 @@ class Block:
 	# Presentación de información en formato JSON
 	def verbose(self):
 		return {
-				'hash' : self.hash,
-				'index' : self.index,
-				'timestamp' : self.timestamp,
-				'data' : self.data,
-				'previousblockhash' : self.previousblockhash
-				}
+			'hash' : self.hash,
+			'index' : self.index,
+			'timestamp' : self.timestamp,
+			'data' : self.data,
+			'previousblockhash' : self.previousblockhash
+			}
 
 # Genesis Block
 def genesisBlock():
