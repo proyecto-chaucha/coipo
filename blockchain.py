@@ -6,6 +6,7 @@
 import hashlib as hasher
 from time import time
 from struct import pack, unpack
+from random import uniform
 
 # Definición del sintaxis de bloque
 class Block:
@@ -18,7 +19,7 @@ class Block:
 	
 	# Creación de hash de bloque
 	def blockHash(self):
-		sha = hasher.sha256()
+		sha = hasher.md5()
 		block_template = str(self.index) + str(self.timestamp) + str(self.data) + str(self.previousblockhash)
 		sha.update(block_template.encode('utf-8'))
 		return sha.hexdigest()
@@ -27,6 +28,12 @@ class Block:
 	def blockPack(self):
 		packedIndex = pack('L', self.index)
 		packedTimestamp = pack('d', self.timestamp)
+		packedData = pack('d', self.data)
+		byteHash = str.encode(self.hash)
+		bytePreviousblockhash = str.encode(self.previousblockhash)
+
+		# Cadena de 84 bytes
+		return byteHash + packedIndex + packedTimestamp + packedData + bytePreviousblockhash
 
 	# Presentación de información en formato JSON
 	def verbose(self):
@@ -40,13 +47,13 @@ class Block:
 
 # Genesis Block
 def genesisBlock():
-	return Block(0, time(), 'Genesis Block', '0')
+	return Block(0, time(), 123.456, '0')
 
 # Generación de bloques
 def blockCreate(lastBlock):
 	index = lastBlock.index + 1
 	timestamp = time()
-	data = 'Hey! Im block ' + str(index)
+	data = uniform(10000, 99999)
 	hash = lastBlock.hash
 	return Block(index, timestamp, data, hash)
 
