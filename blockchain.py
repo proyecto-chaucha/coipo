@@ -59,8 +59,8 @@ class Block:
 			'hash' : self.hash,
 			'height' : self.height,
 			'timestamp' : self.timestamp,
-			'data' : self.data,
 			'n' : self.n,
+			'data' : self.data,
 			'previousblockhash' : self.previousblockhash
 			}
 
@@ -101,7 +101,7 @@ def main():
 
 		print('Block #%i' % block['height'])
 		print(block)
-		print('\n')
+		print()
 
 	print('FIN')
 

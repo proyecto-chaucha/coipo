@@ -16,19 +16,19 @@ Automaticamente el script generará transacciones, creará bloques con sus respe
 ```
 C:\coipo>blockchain.py 4
 Block #0
-{'hash': '45d909f5fc0b0968a5ff1326620ad358', 'height': 0, 'timestamp': 1507870687.6261067, 'data': 123.456, 'n': 1, 'previousblockhash': '0'}
+{'hash': '90e4c708f82029a3f5d79da6b97843da', 'height': 0, 'timestamp': 1507871005.8566692, 'n': 1, 'data': 123.456, 'previousblockhash': '0'}
 
 Block #1
-{'hash': '85c62520314142a788b4ea9842951ec5', 'height': 1, 'timestamp': 1507870687.6261067, 'data': [68231.22745131716, 58148.46920219712], 'n': 2, 'previousblockhash': '45d909f5fc0b0968a5ff1326620ad358'}
+{'hash': '451f06ffaeef60786651433c4ede5d9e', 'height': 1, 'timestamp': 1507871005.8566692, 'n': 4, 'data': [13122.322698373324, 59913.01273632884, 62132.8152003053, 97694.28095929835], 'previousblockhash': '90e4c708f82029a3f5d79da6b97843da'}
 
 Block #2
-{'hash': '818abe8343d67c533424919081c6d1bb', 'height': 2, 'timestamp': 1507870687.6261067, 'data': [88964.82613856552], 'n': 1, 'previousblockhash': '85c62520314142a788b4ea9842951ec5'}
+{'hash': '882d118cff57dda84427f1c157c6c213', 'height': 2, 'timestamp': 1507871005.8566692, 'n': 1, 'data': [94378.06577589802], 'previousblockhash': '451f06ffaeef60786651433c4ede5d9e'}
 
 Block #3
-{'hash': 'b2d5c5637f65f9e66952116ae8b81539', 'height': 3, 'timestamp': 1507870687.6261067, 'data': [29176.304833827224, 58411.000334397184, 77085.80915241255, 36014.99994471835], 'n': 4, 'previousblockhash': '818abe8343d67c533424919081c6d1bb'}
+{'hash': 'fd41c2e938ea6223afc523826f03f7ff', 'height': 3, 'timestamp': 1507871005.8566692, 'n': 5, 'data': [39213.74385322358, 39446.675587020574, 53746.775946413996, 90589.57639552676, 69233.97350841446], 'previousblockhash': '882d118cff57dda84427f1c157c6c213'}
 
 Block #4
-{'hash': '7c11c6b981a223c1f54c49bb76877fa2', 'height': 4, 'timestamp': 1507870687.6261067, 'data': [40927.396798802845, 44776.007651747605], 'n': 2, 'previousblockhash': 'b2d5c5637f65f9e66952116ae8b81539'}
+{'hash': '9820eba4995c0246a07d7955f71bd09b', 'height': 4, 'timestamp': 1507871005.8566692, 'n': 3, 'data': [28787.1528008594, 68297.59952194573, 94060.04395769224], 'previousblockhash': 'fd41c2e938ea6223afc523826f03f7ff'}
 
 FIN
 ```
