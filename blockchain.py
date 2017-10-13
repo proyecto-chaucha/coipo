@@ -7,6 +7,7 @@ import hashlib as hasher
 from time import time
 from struct import pack, unpack
 from random import uniform, randint
+import argparse
 
 # Definición del sintaxis de bloque
 class Block:
@@ -74,20 +75,22 @@ def blockCreate(lastBlock):
 
 	n = len(data)
 
-	hash = lastBlock.hash
-	return Block(height, timestamp, n, data, hash)
+	previoushash = lastBlock.hash
+	return Block(height, timestamp, n, data, previoushash)
 
 def main():
+	parser = argparse.ArgumentParser()
+	parser.add_argument("n", help="Cantidad de bloques a generar", type=int)
+	args = parser.parse_args()
+
 	# Iniciar blockchain con el Genesis Block
 	genesis = Block(0, time(), 1, 123.456, '0')
 	
 	blockchain = [genesis]
 	previous_block = blockchain[0]
 
-	num_of_blocks_to_add = 20
-
 	# Generar 20 bloques
-	for i in range(0, num_of_blocks_to_add):
+	for i in range(0, args.n):
 		block_to_add = blockCreate(previous_block)
 		blockchain.append(block_to_add)
 		previous_block = block_to_add
@@ -97,7 +100,7 @@ def main():
 		block = Block.verbose(i)
 
 		print('Block #%i' % block['height'])
-		print(Block.verbose(i))
+		print(block)
 		print('\n')
 
 if __name__ == '__main__':
