@@ -83,7 +83,7 @@ def main():
 	blockchain = [genesis]
 	previous_block = blockchain[0]
 
-	# Generar 20 bloques
+	# Generar n bloques
 	for i in range(0, args.n):
 		block_to_add = blockCreate(previous_block)
 		blockchain.append(block_to_add)
@@ -100,6 +100,7 @@ def main():
 		print('> Packed:', blockPacked)
 		print()
 
+	# GGWP
 	print('FIN')
 
 if __name__ == '__main__':
