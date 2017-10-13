@@ -3,4 +3,6 @@ Experimento Blockchain en Python utilizando como base de desarrollo el script [S
 
 ## Modo de uso:
 
-```python blockchain.py [cantidad de bloques]´´´
+```
+python blockchain.py [cantidad de bloques]
+´´´
