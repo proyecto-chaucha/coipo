@@ -10,9 +10,10 @@ from random import uniform
 
 # Definición del sintaxis de bloque
 class Block:
-	def __init__(self, index, timestamp, data, previousblockhash):
-		self.index = index
+	def __init__(self, height, timestamp, n, data, previousblockhash):
+		self.height = height
 		self.timestamp = timestamp
+		self.n = n
 		self.data = data
 		self.previousblockhash = previousblockhash
 		self.hash = self.blockHash()
@@ -20,46 +21,47 @@ class Block:
 	# Creación de hash de bloque
 	def blockHash(self):
 		sha = hasher.md5()
-		block_template = str(self.index) + str(self.timestamp) + str(self.data) + str(self.previousblockhash)
+		block_template = str(self.height) + str(self.timestamp) + str(self.n) + str(self.data) + str(self.previousblockhash)
 		sha.update(block_template.encode('utf-8'))
 		return sha.hexdigest()
 
 	# Compresión de tamaño de bloque
 	def blockPack(self):
-		packedIndex = pack('L', self.index)
-		packedTimestamp = pack('d', self.timestamp)
-		packedData = pack('d', self.data)
 		byteHash = str.encode(self.hash)
+		packedHeight = pack('L', self.height)
+		packedTimestamp = pack('d', self.timestamp)
+		packedN = pack('d', self.n)
+		packedData = pack('d', self.data)
 		bytePreviousblockhash = str.encode(self.previousblockhash)
 
 		# Cadena de 84 bytes
-		return byteHash + packedIndex + packedTimestamp + packedData + bytePreviousblockhash
+		return byteHash + packedHeight + packedTimestamp + packedN + packedData + bytePreviousblockhash
 
 	# Presentación de información en formato JSON
 	def verbose(self):
 		return {
 			'hash' : self.hash,
-			'index' : self.index,
+			'height' : self.height,
 			'timestamp' : self.timestamp,
 			'data' : self.data,
+			'n' : self.n,
 			'previousblockhash' : self.previousblockhash
 			}
 
-# Genesis Block
-def genesisBlock():
-	return Block(0, time(), 123.456, '0')
-
 # Generación de bloques
 def blockCreate(lastBlock):
-	index = lastBlock.index + 1
+	height = lastBlock.height + 1
 	timestamp = time()
+	n = 1
 	data = uniform(10000, 99999)
 	hash = lastBlock.hash
-	return Block(index, timestamp, data, hash)
+	return Block(height, timestamp, n, data, hash)
 
 def main():
 	# Iniciar blockchain con el Genesis Block
-	blockchain = [genesisBlock()]
+	genesis = Block(0, time(), 1, 123.456, '0')
+	
+	blockchain = [genesis]
 	previous_block = blockchain[0]
 
 	num_of_blocks_to_add = 20
