@@ -23,14 +23,11 @@ class Block:
 	def blockHash(self):
 		sha = hasher.md5()
 
-		if self.n > 1:
-			aux = ''
-			for i in self.data:
-				aux += str(i)
-		else:
-			aux = self.data
+		dataString = ''
+		for i in self.data:
+			dataString += str(i)
 
-		block_template = str(self.height) + str(self.timestamp) + str(self.n) + str(aux) + str(self.previousblockhash)
+		block_template = str(self.height) + str(self.timestamp) + str(self.n) + str(dataString) + str(self.previousblockhash)
 		sha.update(block_template.encode('utf-8'))
 		return sha.hexdigest()
 
@@ -39,14 +36,11 @@ class Block:
 		byteHash = str.encode(self.hash)
 		packedHeight = pack('L', self.height)
 		packedTimestamp = pack('d', self.timestamp)
-		packedN = pack('d', self.n)
+		packedN = pack('L', self.n)
 
-		if self.n > 1:
-			packedData = b''
-			for i in self.data:
-				packedData += pack('d', i)
-		else:
-			packedData = pack('d', self.data)
+		packedData = b''
+		for i in self.data:
+			packedData += pack('d', i)
 
 		bytePreviousblockhash = str.encode(self.previousblockhash)
 
@@ -84,7 +78,7 @@ def main():
 	args = parser.parse_args()
 
 	# Iniciar blockchain con el Genesis Block
-	genesis = Block(0, time(), 1, 123.456, '0')
+	genesis = Block(0, time(), 1, [123.456], '0')
 	
 	blockchain = [genesis]
 	previous_block = blockchain[0]
@@ -98,9 +92,13 @@ def main():
 	# Mostrar el resultado
 	for i in blockchain:
 		block = Block.verbose(i)
+		blockPacked = Block.blockPack(i)
 
 		print('Block #%i' % block['height'])
-		print(block)
+		print()
+		print('> Verbose:', block)
+		print()
+		print('> Packed:', blockPacked)
 		print()
 
 	print('FIN')
