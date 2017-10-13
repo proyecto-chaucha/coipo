@@ -7,7 +7,7 @@ import hashlib as hasher
 from time import time
 from struct import pack, unpack
 from random import uniform, randint
-import argparse
+from argparse import ArgumentParser
 
 # Definición del sintaxis de bloque
 class Block:
@@ -79,7 +79,7 @@ def blockCreate(lastBlock):
 	return Block(height, timestamp, n, data, previoushash)
 
 def main():
-	parser = argparse.ArgumentParser()
+	parser = ArgumentParser()
 	parser.add_argument("n", help="Cantidad de bloques a generar", type=int)
 	args = parser.parse_args()
 
