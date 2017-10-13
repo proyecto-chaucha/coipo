@@ -97,7 +97,6 @@ def main():
 		print('Block #%i' % block['height'])
 		print()
 		print('> Verbose:', block)
-		print()
 		print('> Packed:', blockPacked)
 		print()
 
