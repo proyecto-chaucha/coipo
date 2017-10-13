@@ -3,7 +3,7 @@ Experimento Blockchain en Python utilizando como base de desarrollo el script [S
 
 ## Modo de uso:
 
-Ejecuta el script **blockchain.py** con Python 3.6, incluyendo la cantidad de bloques que deseas generar.
+Ejecuta el script **blockchain.py** con [Python 3.6](https://www.python.org), incluyendo la cantidad de bloques que deseas generar.
 
 ```
 python blockchain.py [cantidad de bloques]
