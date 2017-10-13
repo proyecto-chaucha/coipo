@@ -6,7 +6,7 @@
 import hashlib as hasher
 from time import time
 from struct import pack, unpack
-from random import uniform
+from random import uniform, randint
 
 # Definición del sintaxis de bloque
 class Block:
@@ -21,7 +21,15 @@ class Block:
 	# Creación de hash de bloque
 	def blockHash(self):
 		sha = hasher.md5()
-		block_template = str(self.height) + str(self.timestamp) + str(self.n) + str(self.data) + str(self.previousblockhash)
+
+		if self.n > 1:
+			aux = ''
+			for i in self.data:
+				aux += str(i)
+		else:
+			aux = self.data
+
+		block_template = str(self.height) + str(self.timestamp) + str(self.n) + str(aux) + str(self.previousblockhash)
 		sha.update(block_template.encode('utf-8'))
 		return sha.hexdigest()
 
@@ -31,7 +39,14 @@ class Block:
 		packedHeight = pack('L', self.height)
 		packedTimestamp = pack('d', self.timestamp)
 		packedN = pack('d', self.n)
-		packedData = pack('d', self.data)
+
+		if self.n > 1:
+			packedData = b''
+			for i in self.data:
+				packedData += pack('d', i)
+		else:
+			packedData = pack('d', self.data)
+
 		bytePreviousblockhash = str.encode(self.previousblockhash)
 
 		# Cadena de 84 bytes
@@ -52,8 +67,13 @@ class Block:
 def blockCreate(lastBlock):
 	height = lastBlock.height + 1
 	timestamp = time()
-	n = 1
-	data = uniform(10000, 99999)
+
+	data = []
+	for i in range(randint(1,5)):
+		data.append(uniform(10000, 99999))
+
+	n = len(data)
+
 	hash = lastBlock.hash
 	return Block(height, timestamp, n, data, hash)
 
@@ -74,7 +94,11 @@ def main():
 
 	# Mostrar el resultado
 	for i in blockchain:
+		block = Block.verbose(i)
+
+		print('Block #%i' % block['height'])
 		print(Block.verbose(i))
+		print('\n')
 
 if __name__ == '__main__':
 	main()
