@@ -103,5 +103,7 @@ def main():
 		print(block)
 		print('\n')
 
+	print('FIN')
+
 if __name__ == '__main__':
 	main()
